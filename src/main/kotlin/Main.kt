@@ -9,15 +9,16 @@ fun main() {
     println(listStudent)
     var key: Int
     do {
-        println("Введите команду - ")
-        println("0 - выход, ")
+        println("Команды:")
+        println("0 - выход,")
         println("1 - распечатать список студентов,")
         println("2 - распечатать список студентов парней,")
         println("3 - распечатать список студентов девушек,")
         println("4 - перемешать список студентов,")
-        println("5 - выдать двух первых студентов:")
+        println("5 - выдать двух первых студентов.")
+        print("Введите команду : ")
         key = readlnOrNull()?.toIntOrNull() ?: return
-        if ((key < 0) || (key > 5)) println("Incorrect n, enter n >= 0, and n < 2") else {
+        if ((key < 0) || (key > 5)) println("Incorrect n, enter n >= 0, and n < 6") else {
             when (key) {
                 1 -> printListStudent(listStudent)
                 2 -> printListStudentMale(listStudent)
@@ -63,7 +64,6 @@ fun shuffleListStudent(listStudent: List<Student>): List<Student>? {
     }
     return newListStudent.toList()
 }
-
 
 fun printListStudentMale(listStudent: List<Student>) {
     for (i in listStudent) {
