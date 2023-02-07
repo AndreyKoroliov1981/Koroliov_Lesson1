@@ -96,3 +96,7 @@ fun createListStudent(): List<Student> {
 fun test() {
     println("test fun")
 }
+
+fun test2() {
+    println("test2 fun")
+}
