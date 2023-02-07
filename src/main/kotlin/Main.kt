@@ -8,11 +8,17 @@ fun main() {
     println(listStudent)
     var key: Int
     do {
-        print("Введите команду (0 - выход, 1 - распечатать список студентов):")
-        key =  readlnOrNull()?.toIntOrNull() ?: return
-        if ((key<0) || (key>1)) println("Incorrect n, enter n >= 0, and n < 2") else {
+        println("Введите команду - ")
+        println("0 - выход, ")
+        println("1 - распечатать список студентов,")
+        println("2 - распечатать список студентов парней,")
+        println("3 - распечатать список студентов девушек:")
+        key = readlnOrNull()?.toIntOrNull() ?: return
+        if ((key < 0) || (key > 3)) println("Incorrect n, enter n >= 0, and n < 2") else {
             when (key) {
                 1 -> printListStudent(listStudent)
+                2 -> printListStudentMale(listStudent)
+                3 -> printListStudentFemale(listStudent)
             }
         }
 
@@ -22,10 +28,29 @@ fun main() {
 
 fun printListStudent(listStudent: List<Student>) {
     for (i in listStudent) {
-        println(i)
+        with (i) {
+            println("Студент $name из $city, пол - $sex ")
+        }
     }
 }
 
+
+fun printListStudentMale(listStudent: List<Student>) {
+    for (i in listStudent) {
+        when (i.sex) {
+            is Male -> println(i)
+            else  -> {}
+        }
+    }
+}
+fun printListStudentFemale(listStudent: List<Student>) {
+    for (i in listStudent) {
+        when (i.sex) {
+            is Female -> println(i)
+            else  -> {}
+        }
+    }
+}
 fun createListStudent(): List<Student> {
     val answer = mutableListOf<Student>()
     answer.add(Student("Вадим", "Уфа", Male()))
