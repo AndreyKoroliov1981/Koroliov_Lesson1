@@ -92,3 +92,7 @@ fun createListStudent(): List<Student> {
     answer.add(Student("Алёна", "Москва", Female()))
     return answer
 }
+
+fun test() {
+    println("test fun")
+}
