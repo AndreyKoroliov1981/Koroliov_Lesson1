@@ -1,6 +1,7 @@
 import models.Female
 import models.Male
 import models.Student
+import models.TwoBestStudents
 
 fun main() {
     println("Hello Aston!")
@@ -13,9 +14,10 @@ fun main() {
         println("1 - распечатать список студентов,")
         println("2 - распечатать список студентов парней,")
         println("3 - распечатать список студентов девушек,")
-        println("4 - перемешать список студентов:")
+        println("4 - перемешать список студентов,")
+        println("5 - выдать двух первых студентов:")
         key = readlnOrNull()?.toIntOrNull() ?: return
-        if ((key < 0) || (key > 4)) println("Incorrect n, enter n >= 0, and n < 2") else {
+        if ((key < 0) || (key > 5)) println("Incorrect n, enter n >= 0, and n < 2") else {
             when (key) {
                 1 -> printListStudent(listStudent)
                 2 -> printListStudentMale(listStudent)
@@ -24,11 +26,24 @@ fun main() {
                     println("перемешать список студентов удалось")
                     listStudent = it
                 }
+
+                5 -> printFirstTwoStudent(listStudent)
             }
         }
 
     } while (key != 0)
+}
 
+fun printFirstTwoStudent(listStudent: List<Student>) {
+    val twoBestStudents = TwoBestStudents(first = null, second = null)
+    twoBestStudents.apply {
+        first = listStudent[0]
+        second = listStudent[1]
+    }
+    print("студетн №1 - ")
+    twoBestStudents.first?.run { printListStudent(listOf(this)) }
+    print("студетн №2 - ")
+    twoBestStudents.second?.let { printListStudent(listOf(it)) }
 }
 
 fun printListStudent(listStudent: List<Student>) {
@@ -43,7 +58,8 @@ fun shuffleListStudent(listStudent: List<Student>): List<Student>? {
     if (listStudent.size % 2 != 0) return null
     val newListStudent = listStudent.toMutableList()
     for (i in 1..listStudent.size / 2) {
-        newListStudent[i*2-2] = newListStudent[i*2-1].also { newListStudent[i*2-1] = newListStudent[i*2-2] }
+        newListStudent[i * 2 - 2] =
+            newListStudent[i * 2 - 1].also { newListStudent[i * 2 - 1] = newListStudent[i * 2 - 2] }
     }
     return newListStudent.toList()
 }
